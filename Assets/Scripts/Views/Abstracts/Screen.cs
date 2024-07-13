@@ -16,9 +16,15 @@ namespace CardGuess.View
             InitComponents();
         }
 
+        private void OnDestroy()
+        {
+            _canvasGroup.DOKill();
+        }
+
         protected virtual void ChangeCanvasGroupState(float alpha, float time, bool isActive, Action callback = null)
         {
-            if (_canvasGroup.alpha == alpha)
+            if (_canvasGroup.alpha == alpha 
+                || gameObject == null)
                 return;
 
             _canvasGroup.DOKill();
